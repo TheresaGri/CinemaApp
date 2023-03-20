@@ -1,0 +1,12 @@
+{
+  "scripts": {
+    "dev": "nodemon migrateDb.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongodb": "^5.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.21"
+  }
+}

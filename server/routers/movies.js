@@ -1,6 +1,4 @@
-const { MongoClient } = require("mongodb");
 const mongoose = require("mongoose");
-const { ObjectId } = require("mongodb");
 const express = require("express");
 const moviesRouter = express.Router();
 
@@ -10,15 +8,13 @@ mongoose.connect(
 
 const Film = require("../model/Film.js");
 
-//each query should be limited to return at most 20 results -->how to do this
-//extra task: you can implement pagination to make more results available
-
-
-
 moviesRouter.get("/", async (req, res) => {
   try {
     let query = {};
     let movies;
+    let sorting= {};
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 20;
     if (req.query["year"] !== undefined) {
       query = { year: req.query["year"] };
     }
@@ -26,7 +22,21 @@ moviesRouter.get("/", async (req, res) => {
       query = { name: { $regex: req.query["title"], $options: "i" } };
     }
 
-    movies = await Film.find(query);
+    if (req.query["sortAscending"] !== undefined) {
+      if (req.query["sortAscending"] === "year") {
+        sorting = { year: 1 };
+      }
+    }
+    if (req.query["sortDescending"] !== undefined) {
+      if (req.query["sortDescending"] === "year") {
+        sorting = { year: -1 };
+      }
+    }
+
+    movies = await Film.find(query)
+      .sort(sorting)
+      .skip(page * limit)
+      .limit(limit);
 
     res.json(movies);
   } catch (error) {

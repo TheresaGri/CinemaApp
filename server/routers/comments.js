@@ -43,16 +43,17 @@ commentsRouter.post("/", async (req, res) => {
     const email = req.body.email;
     const createdAt = Date.now();
     const text = req.body.text;
-    const movieId = req.body.movieId;
+    const movie_id = req.body.movie_id;
     const newComment = new Comment({
       name,
       email,
       createdAt,
-      movieId
+      movie_id,
+      text
     });
-    console.log(text);
     const savedNewComment = await newComment.save();
-    res.json(savedCNewComment);
+    res.json(savedNewComment);
+    
   } catch (error) {
     res.status(400).json({ success: false });
   }

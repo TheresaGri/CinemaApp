@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 const { Schema, model } = mongoose;
 
 let filmSchema = new Schema({
-  _id: String,
   plot: String,
   name: String,
   genres: Array,

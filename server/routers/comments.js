@@ -12,11 +12,15 @@ commentsRouter.get("/", async (req, res) => {
   try {
     let query = {};
     let comments;
+    let page= parseInt(req.query.page) || 1;
+    let limit = parseInt(req.query.limit) || 20;
     if (req.query["movieId"] !== undefined) {
       query = { movie_id: req.query["movieId"] };
     }
 
-    comments = await Comment.find(query);
+    comments = await Comment.find(query)
+      .skip(page * limit)
+      .limit(limit);
 
     res.json(comments);
   } catch (error) {
@@ -49,11 +53,10 @@ commentsRouter.post("/", async (req, res) => {
       email,
       createdAt,
       movie_id,
-      text
+      text,
     });
     const savedNewComment = await newComment.save();
     res.json(savedNewComment);
-    
   } catch (error) {
     res.status(400).json({ success: false });
   }

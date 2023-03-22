@@ -13,8 +13,8 @@ moviesRouter.get("/", async (req, res) => {
     let query = {};
     let movies;
     let sorting = {};
-    const page = parseInt(req.query.page) || 1;
-    const limit = parseInt(req.query.limit) || 20;
+    const page = parseInt(req.query.page);
+    const limit = parseInt(req.query.limit);
     if (req.query["year"] !== undefined) {
       query = { year: req.query["year"] };
     }

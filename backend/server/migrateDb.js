@@ -3,9 +3,6 @@ const { MongoClient } = require("mongodb");
 const DB_URL =
   "mongodb+srv://theresagri:XcsNUtaP9GJdX3i@cluster0.jycu5sj.mongodb.net/";
 
-/* let SourceMovie = require("./model/SourceMovie.js");
-
- */
 const client = new MongoClient(DB_URL);
 
 async function migrateMovies() {
@@ -98,13 +95,4 @@ async function migrateComments() {
  */
 
 /*  migrateComments();
- */ 
-
-/* async function deleteComments() {
-  const databaseOfMovies = client.db("cinema");
-  const newComments = databaseOfMovies.collection("comments");
-  await newComments.deleteMany();
-
-}
-
- deleteComments();  */
+ */

@@ -1,5 +1,7 @@
 const express = require("express");
 const app = express();
+const cors = require("cors");
+app.use(cors());
 const moviesRouter = require("./routers/movies.js");
 const commentsRouter = require("./routers/comments.js");
 

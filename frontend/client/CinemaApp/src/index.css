@@ -1,0 +1,14 @@
+:root {
+  
+background-color: black;
+display:flex;
+flex-direction: column;
+
+}
+
+body {
+  display: flex;
+  place-items: center;
+  min-width: 120px;
+  min-height: 20vh;
+}

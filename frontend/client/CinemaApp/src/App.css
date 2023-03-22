@@ -1,0 +1,8 @@
+ .movieApp {
+  display:flex;
+  flex-direction: column;
+} 
+
+.moviePage {
+  position: absolute;
+}

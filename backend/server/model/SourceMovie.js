@@ -1,5 +1,5 @@
-const { MongoClient } = require("mongodb");
-const { Schema, model } = MongoClient;
+const { mongoose } = require("mongoose");
+const { Schema, model } = mongoose;
 
 let movieSchema = new Schema({
   _id: String,
